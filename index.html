@@ -15,11 +15,6 @@
         canvas.width = document.documentElement.clientWidth
         canvas.height = document.documentElement.clientHeight
 
-        //阻止下拉划动
-        document.addEventListener('touchmove', e => {
-            e.preventDefault();
-        }, { passive: false })
-
         var ctx = canvas.getContext('2d')
         ctx.fillStyle = 'black'
         ctx.strokeStyle = 'black'
@@ -48,6 +43,10 @@
         var isTouchDevice = 'ontouchstart' in document.documentElement; //是否是移动设备
 
         if (isTouchDevice) {
+            //阻止下拉划动
+            document.addEventListener('touchmove', e => {
+                e.preventDefault();
+            }, { passive: false })
 
             canvas.ontouchstart = (e) => {
                 last = [e.touches[0].clientX, e.touches[0].clientY]
